@@ -6,8 +6,8 @@ public class LinkedList {
         Node start1 = null, cur1 = null,
              start2 = null, cur2 = null;
         
-        int[] list1_coeff = getCoeffAndPow("first.txt")[0];
-        int[] list1_pow = getCoeffAndPow("first.txt")[1];
+        int[] list1_coeff = GetFromFile.getCoeffAndPow("first.txt")[0];
+        int[] list1_pow = GetFromFile.getCoeffAndPow("first.txt")[1];
 
         for (int i = 0; i < list1_coeff.length; i++){
             Node ptr = new Node(list1_coeff[i], list1_pow[i]);
@@ -22,8 +22,8 @@ public class LinkedList {
         }
         
 
-        int[] list2_coeff = getCoeffAndPow("second.txt")[0];
-        int[] list2_pow = getCoeffAndPow("second.txt")[1];
+        int[] list2_coeff = GetFromFile.getCoeffAndPow("second.txt")[0];
+        int[] list2_pow = GetFromFile.getCoeffAndPow("second.txt")[1];
 
         for (int i = 0; i < list2_coeff.length; i++){
             Node ptr = new Node(list2_coeff[i], list2_pow[i]);
@@ -70,44 +70,5 @@ public class LinkedList {
         }
         writ.close(); 
         System.out.println();
-    }
-
-    public static int[][] getCoeffAndPow(String name) throws IOException{
-        BufferedReader fr = new BufferedReader(new FileReader(name));
-        String c = fr.readLine();
-        fr.close();
-        int[] result_coef = new int[c.split("[+-]").length];
-        int[] result_pow = new int[c.split("[+-]").length];
-        
-        String[] file = c.split("x");
-        int index_coef = 0;
-        int index_pow = 0;
-        for (String string : file) 
-        {
-            if (index_coef == 0)
-            {
-                result_coef[index_coef] = Integer.parseInt(string);
-                index_coef++;
-            }
-            else
-            {
-                if (string.indexOf("-") == -1 && string.indexOf("+") == -1)
-                {
-                    result_pow[index_pow] = Integer.parseInt(string.replace("^", ""));
-                }
-                else
-                {
-                    string = string.replace("^", "");
-                    int ind = string.indexOf("-");
-                    if (ind == -1) { ind = string.indexOf("+");};
-                    result_coef[index_coef] = Integer.parseInt(string.substring(ind));
-                    result_pow[index_pow] = Integer.parseInt(string.substring(0, ind));
-                    index_coef++;
-                    index_pow++;
-                }
-            }
-        }
-        int[][] result = {result_coef, result_pow};
-        return result;
     }
 }
