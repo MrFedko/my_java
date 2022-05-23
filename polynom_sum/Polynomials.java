@@ -1,29 +1,25 @@
 package polynom_sum;
 
 public class Polynomials {
-    public static Node addPolynom (Node p1, Node p2) {
-    
+    public static Node addPolynom(Node p1, Node p2) {
+
         Node a = p1, b = p2, newHead = new Node(0, 0), c = newHead;
-        
-        while (a != null || b != null){
-            if (a == null){
+
+        while (a != null || b != null) {
+            if (a == null) {
                 c.next = b;
                 break;
-            }
-            else if (b == null){
+            } else if (b == null) {
                 c.next = a;
                 break;
-            }
-            else if (a.pow == b.pow){
+            } else if (a.pow == b.pow) {
                 c.next = new Node(a.coeff + b.coeff, a.pow);
                 a = a.next;
                 b = b.next;
-            }
-            else if (a.pow > b.pow){
+            } else if (a.pow > b.pow) {
                 c.next = new Node(a.coeff, a.pow);
                 a = a.next;
-            }
-            else if (a.pow < b.pow){
+            } else if (a.pow < b.pow) {
                 c.next = new Node(b.coeff, b.pow);
                 b = b.next;
             }
@@ -32,5 +28,3 @@ public class Polynomials {
         return newHead.next;
     }
 }
-
-
