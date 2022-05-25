@@ -26,7 +26,6 @@ public class GetFromFile {
                     if (ind == -1) {
                         ind = string.indexOf("+");
                     }
-                    ;
                     result_coef[index_coef] = Integer.parseInt(string.substring(ind));
                     result_pow[index_pow] = Integer.parseInt(string.substring(0, ind));
                     index_coef++;
