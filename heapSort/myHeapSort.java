@@ -1,8 +1,5 @@
 package heapSort;
 
-import java.util.Scanner;
-import java.util.stream.Stream;
-
 import sorting.Sorting;
 
 public class myHeapSort {
@@ -32,10 +29,7 @@ public class myHeapSort {
     }
 
     public static void main(String args[]) {
-        Scanner iScanner = new Scanner(System.in);
-        System.out.printf("Enter numbers separated by spaces: ");
-        int myArray[] = Stream.of(iScanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        iScanner.close();
+        int[] myArray = Sorting.getFromUser();
 
         myHeapSort mySorting = new myHeapSort();
         mySorting.nowWeCanSort(myArray);
