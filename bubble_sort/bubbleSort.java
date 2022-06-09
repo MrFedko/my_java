@@ -22,9 +22,8 @@ public class bubbleSort extends Sorting {
     }
 
     public static void main(String[] args) {
-        int[] myArray = getFromUser();
-        bubbleSort mySort = new bubbleSort(myArray);
-        mySort.bubbles(myArray);
+        bubbleSort mySort = new bubbleSort(getFromUser());
+        mySort.bubbles(array);
         printArray(bubbleSort.array);
     }
 }
