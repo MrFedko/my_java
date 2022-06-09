@@ -3,6 +3,8 @@ package merge_sort;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import sorting.Sorting;
+
 public class mergeSortArray {
 
     static int[] array;
@@ -46,9 +48,6 @@ public class mergeSortArray {
         return mergeArray(second, third);
     }
 
-    public static void printArray(int[] first){
-        for (int i = 0; i < first.length; i++) System.out.printf("%d ", first[i]);
-    }
 
     public static void main(String[] args) {
         Scanner iScanner = new Scanner(System.in);
@@ -57,7 +56,7 @@ public class mergeSortArray {
         iScanner.close();
 
         mergeSortArray Merge = new mergeSortArray(fromUser);
-        printArray(Merge.sortArray(array));
+        Sorting.printArray(Merge.sortArray(array));
     }
 
 }
