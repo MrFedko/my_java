@@ -3,6 +3,8 @@ package heapSort;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import sorting.Sorting;
+
 public class myHeapSort {
 
     void heapyfi(int[] array, int lenArray, int i) {
@@ -14,9 +16,7 @@ public class myHeapSort {
         if (rightChild < lenArray && array[rightChild] > array[largestNumber])
             largestNumber = rightChild;
         if (largestNumber != i) {
-            int temp = array[i];
-            array[i] = array[largestNumber];
-            array[largestNumber] = temp;
+            Sorting.swap(array, i, largestNumber);
             heapyfi(array, lenArray, largestNumber);
         }
     }
@@ -26,18 +26,9 @@ public class myHeapSort {
         for (int i = length / 2 - 1; i >= 0; i--)
             heapyfi(array, length, i);
         for (int i = length - 1; i >= 0; i--) {
-            int temp = array[0];
-            array[0] = array[i];
-            array[i] = temp;
+            Sorting.swap(array, 0, i);
             heapyfi(array, i, 0);
         }
-    }
-
-    static void printArray(int array[]) {
-        int length = array.length;
-        for (int i = 0; i < length; ++i)
-            System.out.print(array[i] + " ");
-        System.out.println();
     }
 
     public static void main(String args[]) {
@@ -50,7 +41,7 @@ public class myHeapSort {
         mySorting.nowWeCanSort(myArray);
 
         System.out.println("Now we got an array:");
-        printArray(myArray);
+        Sorting.printArray(myArray);
     }
 
 }
