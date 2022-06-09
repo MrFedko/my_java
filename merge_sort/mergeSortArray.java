@@ -1,8 +1,5 @@
 package merge_sort;
 
-import java.util.Scanner;
-import java.util.stream.Stream;
-
 import sorting.Sorting;
 
 public class mergeSortArray {
@@ -50,10 +47,7 @@ public class mergeSortArray {
 
 
     public static void main(String[] args) {
-        Scanner iScanner = new Scanner(System.in);
-        System.out.printf("enter numbers separated by spaces: ");
-        int[] fromUser = Stream.of(iScanner.nextLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        iScanner.close();
+        int[] fromUser = Sorting.getFromUser();
 
         mergeSortArray Merge = new mergeSortArray(fromUser);
         Sorting.printArray(Merge.sortArray(array));
