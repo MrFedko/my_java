@@ -10,7 +10,7 @@ public class bubbleSort extends Sorting {
         array = myArray;
     }
 
-    public int[] bubbles(int[] array) {
+    public static int[] bubbles(int[] array) {
         int length = array.length;
         for (int i = 0; i + 1 < length; i++) {
             for (int j = 0; j + 1 < length - i; j++) {
@@ -23,7 +23,7 @@ public class bubbleSort extends Sorting {
 
     public static void main(String[] args) {
         bubbleSort mySort = new bubbleSort(getFromUser());
-        mySort.bubbles(array);
+        bubbleSort.bubbles(array);
         printArray(bubbleSort.array);
     }
 }
