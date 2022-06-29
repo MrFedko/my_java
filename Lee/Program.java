@@ -94,7 +94,7 @@ class MapPrinter {
         StringBuilder sb = new StringBuilder();
         for (int row = 0; row < map.length; row++) {
             for (int col = 0; col < map[row].length; col++) {
-                sb.append(String.format("%5d", map[row][col]));
+                sb.append(String.format("%3d", map[row][col]));
             }
             sb.append("\n");
         }
@@ -112,10 +112,10 @@ class MapPrinter {
             for (int col = 0; col < map[row].length; col++) {
                 switch (map[row][col]) {
                     case 0:
-                        sb.append("░");
+                        sb.append("░░");
                         break;
                     case -1:
-                        sb.append("▓");
+                        sb.append("▓▓");
                         break;
                     case -2:
                         sb.append("C");
@@ -124,10 +124,10 @@ class MapPrinter {
                         sb.append("E");
                         break;
                     case -4:
-                        sb.append("+");
+                        sb.append("+ ");
                         break;
                     default:
-                        sb.append("░");
+                        sb.append("░░");
                         break;
                 }
             }
@@ -176,7 +176,7 @@ class WaveAlgorithm {
         Point current = exit;
         if (map[exit.x][exit.y] != 0) {
             road.add(exit);
-            for (int i = 0; i < map[exit.x][exit.y]; i++) {
+            for (int i = 0; i < map[exit.x][exit.y] - 1; i++) {
                 if (map[current.x - 1][current.y] == map[current.x][current.y] - 1) {
                     current = new Point(current.x - 1, current.y);
                 } else if (map[current.x][current.y - 1] == map[current.x][current.y] - 1) {
