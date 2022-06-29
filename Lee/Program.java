@@ -1,20 +1,30 @@
 package Lee;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class Program {
     public static void main(String[] args) {
         var mg = new MapGenerator();
+        Point start = new Point(2, 2);
+        Point exit = new Point(11, 14);
         System.out.println(
                 new MapPrinter().MapColor(mg.getMap()));
-        
+
         var Lee = new WaveAlgorithm(mg.getMap());
-        Lee.Colorize(new Point(2, 2));
+        Lee.Colorize(start);
 
         System.out.println(
                 new MapPrinter().rawData(mg.getMap()));
+
+        var myRoad = Lee.getRoad(exit);
+        System.out.println(myRoad);
+
+        Lee.ColorizeRoad(myRoad);
+        System.out.println(new MapPrinter().MapColor(mg.getMap()));
 
     }
 }
@@ -37,7 +47,7 @@ class Point {
 
     @Override
     public String toString() {
-        return String.format("x: %d  y: %d", x, y);
+        return String.format("x: %d  y: %d \n", x, y);
     }
 }
 
@@ -114,10 +124,13 @@ class MapPrinter {
                     case -3:
                         sb.append("E");
                         break;
+                    case -4:
+                        sb.append("+");
+                        break;
                     default:
+                        sb.append("░");
                         break;
                 }
-                ;
             }
             sb.append("\n");
         }
@@ -161,7 +174,31 @@ class WaveAlgorithm {
 
     public ArrayList<Point> getRoad(Point exit) {
         ArrayList<Point> road = new ArrayList<>();
-        ////
+        Point current = exit;
+        if (map[exit.x][exit.y] != 0) {
+            road.add(exit);
+            for (int i = 0; i < map[exit.x][exit.y]; i++) {
+                if (map[current.x - 1][current.y] == map[current.x][current.y] - 1) {
+                    current = new Point(current.x - 1, current.y);
+                } else if (map[current.x][current.y - 1] == map[current.x][current.y] - 1) {
+                    current = new Point(current.x, current.y - 1);
+                } else if (map[current.x + 1][current.y] == map[current.x][current.y] - 1) {
+                    current = new Point(current.x + 1, current.y);
+                } else if (map[current.x][current.y + 1] == map[current.x][current.y] - 1) {
+                    current = new Point(current.x, current.y + 1);
+                }
+                road.add(current);
+            }
+        }
+        Collections.reverse(road);
         return road;
     }
+
+    public void ColorizeRoad(ArrayList<Point> road) {
+        for (int i = 0; i < road.size(); i++) {
+            Point current = road.get(i);
+            map[current.x][current.y] = -4;
+        }
+    }
+
 }
