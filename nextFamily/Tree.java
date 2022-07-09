@@ -15,11 +15,4 @@ public class Tree {
         tree.add(new Node(child, Relationship.child, parent));
     }
 
-    public void append(People parent, People[] children) {
-        for (People child : children){
-            tree.add(new Node(parent, Relationship.parent, child));
-            tree.add(new Node(child, Relationship.child, parent));
-        }
-    }
-
 }

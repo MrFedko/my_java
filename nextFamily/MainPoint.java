@@ -1,9 +1,7 @@
 package nextFamily;
 
-import java.util.ArrayList;
-
 public class MainPoint {
-    
+
     public static void main(String[] args) {
         People LucasGray = new People("Lucas Gray");
         People MaryGray = new People("Mary Gray");
@@ -31,9 +29,10 @@ public class MainPoint {
         newTree.append(JessicaGray, JohnWetter);
         newTree.append(JessicaGray, LauraWetter);
 
+        Research newRes = new Research(newTree);
 
-        System.out.println(new Research(newTree).spend(LucasGray, Relationship.parent).toString());
-        new Research(newTree).fullTree(LucasGray, "|");
+        System.out.println(newRes.spend(LucasGray, Relationship.parent).toString());
+        newRes.fullTree(LucasGray, "|");
     }
 
 }
